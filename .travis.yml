@@ -9,11 +9,11 @@ env:
     - appGroup="1000"
 
 install:
-  - ./sabnzbd/build.sh
+  - scorputty/sabnzbd/build.sh
 
 script:
-  - ./sabnzbd/rundocker.sh
-  - bats sabnzbd/tests/
+  - scorputty/sabnzbd/rundocker.sh
+  - bats scorputty/sabnzbd/tests/
 
 notifications:
   email: false
