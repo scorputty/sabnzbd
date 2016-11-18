@@ -1,0 +1,19 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+    - appUser="media"
+    - appGroup="1000"
+
+install:
+  - build.sh
+
+script:
+  - rundocker.sh
+  - bats tests/
+
+notifications:
+  email: false
