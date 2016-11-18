@@ -9,11 +9,11 @@ env:
     - appGroup="1000"
 
 install:
-  - build.sh
+  - ./sabnzbd/build.sh
 
 script:
-  - rundocker.sh
-  - bats tests/
+  - ./sabnzbd/rundocker.sh
+  - bats sabnzbd/tests/
 
 notifications:
   email: false
