@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build --rm -t .
+docker build --rm -t ../sabnzbd
