@@ -9,10 +9,10 @@ env:
     - appGroup="1000"
 
 install:
-  - docker build --rm --no-cache ../sabnzbd
+  - docker build --rm --no-cache -t scorputty/sabnzbd ../sabnzbd
 
 script:
-  - rundocker.sh
+  - ./rundocker.sh
   - bats tests/
 
 notifications:
