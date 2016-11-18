@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-docker build --rm --no-cache ../sabnzbd
+docker build --rm --no-cache -t scorputty/sabnzbd ../sabnzbd
