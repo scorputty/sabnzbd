@@ -13,6 +13,7 @@ install:
 
 script:
   - ./rundocker.sh
+  - sleep 10
   - bats tests/
 
 notifications:
