@@ -16,5 +16,11 @@ script:
   - sleep 10
   - bats tests/
 
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push cryptout/sabnzbd:latest;
+    fi
+
 notifications:
   email: false
