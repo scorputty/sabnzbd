@@ -18,50 +18,72 @@ EXPOSE 8080 9090
 # copy the start script to the container
 COPY start.sh /start.sh
 
-# define build packages (these will be removed later)
-ARG buildDeps="gcc g++ git mercurial make automake autoconf python-dev openssl-dev libffi-dev musl-dev"
+# install runtime packages
+RUN \
+ apk --update add --no-cache \
+       ca-certificates \
+       python \
+       py-pip \
+       ffmpeg-libs \
+       ffmpeg \
+       unrar \
+       openssl \
+       p7zip && \
 
-# start building the software tree
-RUN apk --update add $buildDeps \
-  && apk add \
-    python \
-    py-pip \
-    ffmpeg-libs \
-    ffmpeg \
-    unrar \
-    openssl \
-    ca-certificates \
-    p7zip \
-  && pip install --upgrade pip --no-cache-dir \
-  && pip install pyopenssl cheetah --no-cache-dir \
+# update certificates
+ update-ca-certificates && \
 
-  # get and build par2cmdline
-  && git clone --depth 1 https://github.com/Parchive/par2cmdline.git \
-  && cd /par2cmdline \
-  && aclocal \
-  && automake --add-missing \
-  && autoconf \
-  && ./configure \
-  && make \
-  && make install \
-  && cd / \
+# install build packages (these will be removed later)
+ apk add --no-cache --virtual=build-dependencies \
+       g++ \
+       gcc \
+       libffi-dev\
+       openssl-dev \
+       make \
+       automake \
+       autoconf \
+       git \
+       mercurial \
+       musl-dev \
+       python-dev && \
 
-  # get and build yenc
-  && git clone --depth 1 --branch ${GITTAG} https://github.com/sabnzbd/sabnzbd.git \
-  && hg clone https://bitbucket.org/dual75/yenc \
-  && cd /yenc \
-  && python setup.py build \
-  && python setup.py install \
-  && cd / \
+# install pip packages
+ pip install --no-cache-dir -U \
+       incremental \
+       pip && \
+ pip install --no-cache-dir -U \
+       cheetah \
+       pyopenssl && \
 
-  # cleanup
-  && apk del $buildDeps \
-  && rm -rf \
-    /var/cache/apk/* \
-    /par2cmdline \
-    /yenc \
-    /sabnzbd/.git \
-    /tmp/*
+# get and build par2cmdline
+ git clone --depth 1 https://github.com/Parchive/par2cmdline.git && \
+ cd /par2cmdline && \
+ aclocal && \
+ automake --add-missing && \
+ autoconf && \
+ ./configure && \
+ make && \
+ make install && \
+ cd / && \
+
+# get and build yenc
+ git clone --depth 1 --branch ${GITTAG} https://github.com/sabnzbd/sabnzbd.git && \
+ hg clone https://bitbucket.org/dual75/yenc && \
+ cd /yenc && \
+ python setup.py build && \
+ python setup.py install && \
+ cd / && \
+
+# cleanup
+ cd / && \
+ apk del --purge \
+       build-dependencies && \
+ rm -rf \
+       /var/cache/apk/* \
+       /par2cmdline \
+       /yenc \
+       /sabnzbd/.git \
+       /tmp/*
 
 # user with access to media files and config
 RUN adduser -D -u ${appGroup} ${appUser}
