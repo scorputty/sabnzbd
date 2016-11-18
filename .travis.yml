@@ -9,7 +9,7 @@ env:
     - appGroup="1000"
 
 install:
-  - docker build . -t ../sabnzbd
+  - docker build --rm --no-cache ../sabnzbd
 
 script:
   - rundocker.sh
