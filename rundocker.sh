@@ -7,9 +7,9 @@ VOL_INCOMPLETE_DOWNLOADS="/Volumes/shares/docker/data/sabnzbd/incomplete-downloa
 LOCAL_PORT1="8080"
 LOACL_PORT2="9090"
 
-test -d ${VOL_CONFIG} || VOL_CONFIG=".${VOL_CONFIG}" && mkdir -p ${VOL_CONFIG}
-test -d ${VOL_DOWNLOADS} || VOL_DOWNLOADS=".${VOL_DOWNLOADS}" && mkdir -p ${VOL_DOWNLOADS}
-test -d ${VOL_INCOMPLETE_DOWNLOADS} || VOL_INCOMPLETE_DOWNLOADS=".${VOL_INCOMPLETE_DOWNLOADS}" && mkdir -p ${VOL_INCOMPLETE_DOWNLOADS}
+test -d ${VOL_CONFIG} || VOL_CONFIG="${PWD}${VOL_CONFIG}" && mkdir -p ${VOL_CONFIG}
+test -d ${VOL_DOWNLOADS} || VOL_DOWNLOADS="${PWD}${VOL_DOWNLOADS}" && mkdir -p ${VOL_DOWNLOADS}
+test -d ${VOL_INCOMPLETE_DOWNLOADS} || VOL_INCOMPLETE_DOWNLOADS="${PWD}${VOL_INCOMPLETE_DOWNLOADS}" && mkdir -p ${VOL_INCOMPLETE_DOWNLOADS}
 
 docker run -d -h $(hostname) \
   -v ${VOL_CONFIG}:/config \
