@@ -49,6 +49,7 @@ Edit rundocker.sh (this will be replaced by docker-compose soon...).
 ```sh
 ./rundocker.sh
 ```
+
 ### WebGUI
 To reach the WebGUI go to - (http://localhost:8080).
 Or replace localhost with your target IP.
@@ -60,4 +61,4 @@ Or replace localhost with your target IP.
 # Notes
 I'm still learning Docker and use these private (pet)projects to develop my skills.
 While I use these containers myself they are by no means perfect and are always prone to error or change.
-That said, even if only one person copies a snippet of code or learns something from my projects I feel I've contributed a little bit to the Opensource cause...
+That said, even if only one person copies a snippet of code or learns something from my projects I feel I've contributed a little bit to the Open-source cause...
