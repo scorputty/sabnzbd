@@ -44,16 +44,13 @@ Make sure to map the Volumes to match your situation.
 VOLUME ["/config", "/downloads", "/incomplete-downloads"]
 ```
 
-### To run the container.
+### To run the container
 Edit rundocker.sh (this will be replaced by docker-compose soon...).
 ```sh
-VOL_CONFIG="*your_config_location*"
-VOL_DATA="*your_videos_location"
-LOCAL_PORT="8080"
-docker run -d -h $(hostname) -v ${VOL_CONFIG}:/config -v ${VOL_DATA}:/data -p ${LOCAL_PORT}:8080 --name=sabnzbd --restart=always cryptout/sabnzbd
+./rundocker.sh
 ```
 ### WebGUI
-To reach the WebGUI go to - (http://localhost:8080)
+To reach the WebGUI go to - (http://localhost:8080).
 Or replace localhost with your target IP.
 
 ## Info
