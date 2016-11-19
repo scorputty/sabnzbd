@@ -6,7 +6,7 @@ This is a Dockerfile to set up "SABnzbd" - (http://sabnzbd.org/).
 
 ### Docker Hub
 The built image is also hosted at Docker Hub - (https://hub.docker.com/r/cryptout/sabnzbd/).
-You can run it directly if you don't want to customize the container by typing the following commands.
+If you don't want to customize the container you can run it directly by typing the following commands.
 ```sh
 export VOL_CONFIG="/Volumes/shares/docker/config/sabnzbd"
 export VOL_DOWNLOADS="/Volumes/shares/docker/data/sabnzbd/downloads"
