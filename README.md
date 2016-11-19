@@ -20,7 +20,7 @@ docker run -d -h $(hostname) \
   -v ${VOL_INCOMPLETE_DOWNLOADS}:/incomplete-downloads \
   -p ${LOCAL_PORT1}:8080 \
   -p ${LOACL_PORT2}:9090 \
-  --restart=always cryptout/sabnzbd
+  --name=sabnzbd --restart=always cryptout/sabnzbd
 ```
 
 # Build from Dockerfile
