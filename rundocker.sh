@@ -17,7 +17,7 @@ docker run -d -h $(hostname) \
   -v ${VOL_INCOMPLETE_DOWNLOADS}:/incomplete-downloads \
   -p ${LOCAL_PORT1}:8080 \
   -p ${LOACL_PORT2}:9090 \
-  --restart=always cryptout/sabnzbd
+  --name=sabnzbd --restart=always cryptout/sabnzbd
 # for troubleshooting use this start command to get a shell
 # docker run -ti -h $(hostname) \
 #   -v ${VOL_CONFIG}:/config \

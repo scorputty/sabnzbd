@@ -6,9 +6,21 @@ This is a Dockerfile to set up "SABnzbd" - (http://sabnzbd.org/).
 
 ### Docker Hub
 The built image is also hosted at Docker Hub - (https://hub.docker.com/r/cryptout/sabnzbd/).
-You can run it directly if you don't want to customize the container:
+You can run it directly if you don't want to customize the container by typing the following commands.
 ```sh
-docker run -d -v myconfig:/config -v mydata:/data -p 8080:8080 --restart=always cryptout/sabnzbd
+export VOL_CONFIG="/Volumes/shares/docker/config/sabnzbd"
+export VOL_DOWNLOADS="/Volumes/shares/docker/data/sabnzbd/downloads"
+export VOL_INCOMPLETE_DOWNLOADS="/Volumes/shares/docker/data/sabnzbd/incomplete-downloads"
+export LOCAL_PORT1="8080"
+export LOACL_PORT2="9090"
+
+docker run -d -h $(hostname) \
+  -v ${VOL_CONFIG}:/config \
+  -v ${VOL_DOWNLOADS}:/downloads \
+  -v ${VOL_INCOMPLETE_DOWNLOADS}:/incomplete-downloads \
+  -p ${LOCAL_PORT1}:8080 \
+  -p ${LOACL_PORT2}:9090 \
+  --restart=always cryptout/sabnzbd
 ```
 
 # Build from Dockerfile
@@ -38,11 +50,15 @@ Edit rundocker.sh (this will be replaced by docker-compose soon...).
 VOL_CONFIG="*your_config_location*"
 VOL_DATA="*your_videos_location"
 LOCAL_PORT="8080"
-docker run -d -h $(hostname) -v ${VOL_CONFIG}:/config -v ${VOL_DATA}:/data -p ${LOCAL_PORT}:8080 --restart=always cryptout/sabnzbd
+docker run -d -h $(hostname) -v ${VOL_CONFIG}:/config -v ${VOL_DATA}:/data -p ${LOCAL_PORT}:8080 --name=sabnzbd --restart=always cryptout/sabnzbd
 ```
 ### WebGUI
 To reach the WebGUI go to - (http://localhost:8080)
 Or replace localhost with your target IP.
+
+## Info
+Shell access whilst the container is running: `docker exec -it sabnzbd /bin/sh`
+To monitor the logs of the container in realtime: `docker logs -f sabnzbd`
 
 # Notes
 I'm still learning Docker and use these private (pet)projects to develop my skills.
