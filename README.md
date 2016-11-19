@@ -21,3 +21,11 @@ VOL_DATA="*your_videos_location"
 LOCAL_PORT="8080"
 docker run -d -h $(hostname) -v ${VOL_CONFIG}:/config -v ${VOL_DATA}:/data -p ${LOCAL_PORT}:8080 --restart=always scorputty/sabnzbd
 ```
+# Notes
+To reach the WebGUI go to http://localhost:8080
+
+### Volumes
+Make sure to map the Volumes to match your situation.
+```Dockerfile
+VOLUME ["/config", "/downloads", "/incomplete-downloads"]
+```
