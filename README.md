@@ -54,8 +54,8 @@ To reach the WebGUI go to - (http://localhost:8080).
 Or replace localhost with your target IP.
 
 ## Info
-Shell access whilst the container is running: `docker exec -it sabnzbd /bin/sh`
-To monitor the logs of the container in realtime: `docker logs -f sabnzbd`
+* Shell access whilst the container is running: `docker exec -it sabnzbd /bin/sh`
+* To monitor the logs of the container in realtime: `docker logs -f sabnzbd`
 
 # Notes
 I'm still learning Docker and use these private (pet)projects to develop my skills.
