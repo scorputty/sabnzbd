@@ -4,6 +4,7 @@ services:
   - docker
 
 env:
+  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=2.2.0.0
   global:
     - appUser="media"
     - appGroup="media"
