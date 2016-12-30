@@ -18,9 +18,6 @@ docker run -d -h $(hostname) \
   -v ${VOL_DOWNLOADS}:/downloads \
   -v ${VOL_INCOMPLETE_DOWNLOADS}:/incomplete-downloads \
   -v ${VOL_MEDIA}:/media \
-  -v /etc/localtime:/etc/timezone:ro \
-  -e PUID=10000 \
-  -e PGID=10000 \
   -p ${LOCAL_PORT1}:8080 \
   -p ${LOACL_PORT2}:9090 \
   --name=sabnzbd --restart=always cryptout/sabnzbd
