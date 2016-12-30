@@ -5,9 +5,6 @@ services:
 
 env:
   - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=2.2.0.0
-  global:
-    - appUser="media"
-    - appGroup="media"
 
 install:
   - docker build --rm --no-cache -t cryptout/sabnzbd ../sabnzbd
