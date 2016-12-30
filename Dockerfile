@@ -1,6 +1,6 @@
 FROM alpine:latest
 MAINTAINER scorputty
-LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="1.1.0"
+LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.2"
 
 # variables
 ENV appUser="media"
