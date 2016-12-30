@@ -4,13 +4,15 @@ LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="1.1.0"
 
 # variables
 ENV appUser="media"
-ENV appGroup="1000"
+ENV appGroup="media"
+ENV PUID="10000"
+ENV PGID="10000"
 
 # git repository version
 ARG GITTAG=1.1.0
 
 # mounted volumes should be mapped to media files and config with the run command
-VOLUME ["/config", "/downloads", "/incomplete-downloads"]
+VOLUME ["/config", "/downloads", "/incomplete-downloads", "/media"]
 
 # ports should be mapped with the run command to match your situation
 EXPOSE 8080 9090
@@ -86,7 +88,11 @@ RUN \
        /tmp/*
 
 # user with access to media files and config
-RUN adduser -D -u ${appGroup} ${appUser}
+RUN addgroup -g ${PGID} ${appGroup} && \
+ adduser -G ${appGroup} -D -u ${PUID} ${appUser}
+
+# set owner
+RUN chown -R ${appUser}:${appGroup} /start.sh
 
 # switch to application directory
 WORKDIR /sabnzbd
