@@ -1,8 +1,9 @@
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER scorputty
 LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.4"
 
 # variables
+ENV TZ="Europe/Amsterdam"
 ENV appUser="media"
 ENV appGroup="media"
 ENV PUID="10000"
@@ -26,8 +27,8 @@ RUN \
        ca-certificates \
        bash \
        su-exec \
+       py2-pip \
        python \
-       py-pip \
        ffmpeg-libs \
        ffmpeg \
        unrar \
