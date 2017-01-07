@@ -8,8 +8,8 @@ test -d ${VOL_CONFIG} || VOL_CONFIG="${PWD}${VOL_CONFIG}" && mkdir -p ${VOL_CONF
 test -d ${VOL_MEDIA} || VOL_MEDIA="${PWD}${VOL_MEDIA}" && mkdir -p ${VOL_MEDIA}
 
 docker run -d -h $(hostname) \
-  -p 8080:8080
-  -p 9090:9090
+  -p 8080:8080 \
+  -p 9090:9090 \
   -v ${VOL_CONFIG}:/config \
   -v ${VOL_MEDIA}:/media \
   -e TZ="Europe/Amsterdam" \
