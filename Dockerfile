@@ -1,6 +1,6 @@
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER scorputty
-LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.2"
+LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.3"
 
 # variables
 ENV appUser="media"
@@ -12,7 +12,7 @@ ENV PGID="10000"
 ARG GITTAG=1.1.0
 
 # mounted volumes should be mapped to media files and config with the run command
-VOLUME ["/config", "/downloads", "/incomplete-downloads", "/media"]
+VOLUME ["/config", "/media"]
 
 # ports should be mapped with the run command to match your situation
 EXPOSE 8080 9090
@@ -24,6 +24,8 @@ COPY start.sh /start.sh
 RUN \
  apk --update add --no-cache \
        ca-certificates \
+       bash \
+       su-exec \
        python \
        py-pip \
        ffmpeg-libs \
@@ -92,7 +94,7 @@ RUN addgroup -g ${PGID} ${appGroup} && \
  adduser -G ${appGroup} -D -u ${PUID} ${appUser}
 
 # set owner
-RUN chown -R ${appUser}:${appGroup} /start.sh
+RUN chown -R ${appUser}:${appGroup} /start.sh /config /media
 
 # switch to application directory
 WORKDIR /sabnzbd
