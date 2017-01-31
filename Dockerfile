@@ -10,7 +10,7 @@ ENV PUID="10000"
 ENV PGID="10000"
 
 # git repository version
-ARG GITTAG=1.1.0
+ARG GITTAG=master
 
 # mounted volumes should be mapped to media files and config with the run command
 VOLUME ["/config", "/media"]
