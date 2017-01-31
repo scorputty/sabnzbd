@@ -1,6 +1,6 @@
 FROM alpine:edge
 MAINTAINER scorputty
-LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.4"
+LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.5"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -10,7 +10,7 @@ ENV PUID="10000"
 ENV PGID="10000"
 
 # git repository version
-ARG GITTAG=master
+ARG GITTAG="master"
 
 # mounted volumes should be mapped to media files and config with the run command
 VOLUME ["/config", "/media"]
