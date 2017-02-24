@@ -15,6 +15,25 @@ cd sabnzbd
 ./build.sh
 ```
 
+# Docker compose example
+```
+sabnzbd:
+    container_name: sabnzbd
+    image: docker.io/cryptout/sabnzbd
+    hostname: sabnzbd
+    network_mode: host
+    environment:
+      - TZ=Europe/Amsterdam
+      - USER=media
+      - USERID=10000
+      - PUID=10000
+      - PGID=10000
+      - ENV appUser=media
+      - ENV appGroup=media
+    volumes:
+      - /share:/share
+```
+
 ### WebGUI
 To reach the WebGUI go to - (http://localhost:8080).
 Or replace localhost with your target IP.
