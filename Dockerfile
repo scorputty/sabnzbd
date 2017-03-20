@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 MAINTAINER scorputty
 LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.7"
 
