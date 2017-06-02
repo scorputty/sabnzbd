@@ -1,6 +1,6 @@
 FROM alpine:latest
 MAINTAINER scorputty
-LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.7"
+LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.8"
 
 # variables
 ENV TZ="Europe/Amsterdam"
