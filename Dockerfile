@@ -1,6 +1,6 @@
 FROM alpine:latest
 MAINTAINER scorputty
-LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.1.1"
+LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.1.2"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -56,12 +56,8 @@ RUN \
        pyopenssl \
        sabyenc && \
 
-# get and build sabnzbd
+# get sabnzbd
  git clone https://github.com/sabnzbd/sabnzbd.git && \
- cd sabnzbd && \
- python setup.py build && \
- python setup.py install && \
- cd / && \
 
 # get and build par2cmdline
  git clone https://github.com/Parchive/par2cmdline.git && \
