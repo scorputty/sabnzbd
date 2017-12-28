@@ -56,6 +56,13 @@ RUN \
        pyopenssl \
        sabyenc && \
 
+# get and build sabnzbd
+ git clone https://github.com/sabnzbd/sabnzbd.git && \
+ cd sabnzbd && \
+ python setup.py build && \
+ python setup.py install && \
+ cd / && \
+
 # get and build par2cmdline
  git clone https://github.com/Parchive/par2cmdline.git && \
  cd par2cmdline && \
@@ -69,8 +76,8 @@ RUN \
 
 # cleanup
  cd / && \
- # apk del --purge \
- #       build-dependencies && \
+ apk del --purge \
+       build-dependencies && \
  rm -rf \
        /var/cache/apk/* \
        /par2cmdline \
