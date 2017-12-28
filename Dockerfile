@@ -1,6 +1,6 @@
 FROM alpine:latest
 MAINTAINER scorputty
-LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.0.9"
+LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.1.0"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -8,9 +8,6 @@ ENV appUser="media"
 ENV appGroup="media"
 ENV PUID="10000"
 ENV PGID="10000"
-
-# git repository version
-ARG GITTAG="master"
 
 # ports should be mapped with the run command to match your situation
 EXPOSE 8080 9090
@@ -55,25 +52,18 @@ RUN \
        pip && \
  pip install --no-cache-dir -U \
        cheetah \
-       pyopenssl && \
+       pyopenssl \
+       sabyenc && \
 
 # get and build par2cmdline
- git clone --depth 1 https://github.com/Parchive/par2cmdline.git && \
- cd /par2cmdline && \
+ git clone https://github.com/Parchive/par2cmdline.git && \
+ cd par2cmdline && \
  aclocal && \
  automake --add-missing && \
  autoconf && \
  ./configure && \
  make && \
  make install && \
- cd / && \
-
-# get and build yenc
- git clone --depth 1 --branch ${GITTAG} https://github.com/sabnzbd/sabnzbd.git && \
- hg clone https://bitbucket.org/dual75/yenc && \
- cd /yenc && \
- python setup.py build && \
- python setup.py install && \
  cd / && \
 
 # cleanup
@@ -83,7 +73,6 @@ RUN \
  rm -rf \
        /var/cache/apk/* \
        /par2cmdline \
-       /yenc \
        /sabnzbd/.git \
        /tmp/*
 
