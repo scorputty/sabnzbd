@@ -1,6 +1,6 @@
 FROM alpine:latest
 MAINTAINER scorputty
-LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.1.0"
+LABEL Description="SABnzbd" Vendor="Stef Corputty" Version="0.1.1"
 
 # variables
 ENV TZ="Europe/Amsterdam"
@@ -27,7 +27,8 @@ RUN \
        ffmpeg \
        unrar \
        openssl \
-       p7zip && \
+       p7zip \
+       libgomp && \
 
 # update certificates
  update-ca-certificates && \
