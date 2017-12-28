@@ -69,8 +69,8 @@ RUN \
 
 # cleanup
  cd / && \
- apk del --purge \
-       build-dependencies && \
+ # apk del --purge \
+ #       build-dependencies && \
  rm -rf \
        /var/cache/apk/* \
        /par2cmdline \
