@@ -3,6 +3,7 @@
 .gitignore
 .github
 .gitattributes
+.travis.yml
 
 # Local config files
 

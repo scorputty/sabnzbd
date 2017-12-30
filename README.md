@@ -15,7 +15,12 @@ cd sabnzbd
 ./build.sh
 ```
 
-# Docker compose example
+### Start container
+```sh
+./rundocker.sh
+```
+
+### Or use docker-compose
 ```
 sabnzbd:
     container_name: sabnzbd
@@ -37,6 +42,7 @@ sabnzbd:
 ### WebGUI
 To reach the WebGUI go to - (http://localhost:8080).
 Or replace localhost with your target IP.
+* I did not bother with SSL/TLS or any login credentials. 
 
 ## Info
 * Shell access whilst the container is running: `docker exec -it sabnzbd /bin/sh`
