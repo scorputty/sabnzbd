@@ -3,6 +3,7 @@
 # Docker SABnzbd (Alpine Base)
 
 This is a Dockerfile to build "SABnzbd" - (http://sabnzbd.org/).
+This is no longer updated
 
 ### Docker Hub
 The built image is also hosted at Docker Hub - (https://hub.docker.com/r/cryptout/sabnzbd/).
